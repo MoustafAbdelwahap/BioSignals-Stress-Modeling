@@ -101,29 +101,13 @@ Raw sensor streams + questionnaires + daily diaries
 | Random Forest | Stress, 3-class | LOSO | F1 (macro) | 0.XX |
 | Clustering | Personality trait grouping | — | Silhouette | 0.XX |
 
-<p align="center">
-  <img src="assets/figures/circadian_pattern_example.png" width="70%" alt="Example circadian pattern">
-</p>
 
 ## Repository structure
 
 ```
 BioSignals-Stress-Modeling/
-├── notebooks/          # step-by-step exploratory + modelling notebooks
-├── src/                # reusable pipeline code (cleaning, features, models)
+├── python/          # step-by-step exploratory + modelling notebooks
 ├── assets/             # figures used in this README
 ├── data/               # dataset access instructions (data itself is gitignored)
-├── requirements.txt
 └── README.md
 ```
-
-## Roadmap
-
-- [ ] Explore raw-signal-as-input models (RNN/CNN) instead of hand-crafted features
-- [ ] Move from one-size-fits-all classifiers toward **personalized, multi-task models** — treating each subject (or subject group) as a task rather than pooling everyone into one model
-- [ ] Systematic bias/fairness auditing of trained models
-- [ ] Package feature extraction as a standalone pip-installable module
-- [ ] Post-processing and deployment path for real-world / real-time use
-- [ ] Add unit tests for `src/`
-
-
