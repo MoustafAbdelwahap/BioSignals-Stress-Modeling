@@ -110,6 +110,6 @@ Raw sensor streams + questionnaires + daily diaries
 BioSignals-Stress-Modeling/
 ├── python/          # step-by-step exploratory + modelling notebooks
 ├── assets/             # figures used in this README
-├── data/               # dataset access instructions (data itself is gitignored)
+├── readme_data/               # dataset access instructions (data itself is gitignored)
 └── README.md
 ```
