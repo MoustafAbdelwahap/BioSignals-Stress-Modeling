@@ -1,0 +1,31 @@
+# Core data handling
+pandas
+numpy
+
+# Machine learning
+scikit-learn
+
+# Deep learning (used for sliding-window sequence generation)
+tensorflow
+
+# Physiological signal feature extraction (Empatica E4 EDA/IBI/ACC/TEMP readers)
+flirt
+
+# Timezone handling (French DST edge cases)
+pytz
+
+# Visualization
+matplotlib
+seaborn
+
+# Progress bars
+tqdm
+
+# Database access (PostgreSQL) -- imports as `pg`
+PyGreSQL
+
+# HTTP requests (Empatica E4 Connect API)
+requests
+
+# Excel export engine (used with pandas.ExcelWriter)
+XlsxWriter
