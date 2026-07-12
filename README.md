@@ -117,26 +117,6 @@ BioSignals-Stress-Modeling/
 └── README.md
 ```
 
-## Getting started
-
-```bash
-git clone https://github.com/MoustafAbdelwahap/BioSignals-Stress-Modeling.git
-cd BioSignals-Stress-Modeling
-pip install -r requirements.txt
-```
-
-Run the pipeline stage by stage via the notebooks in `notebooks/`, or import individual modules from `src/`:
-
-```python
-from src.preprocessing import clean_signals
-from src.features import extract_features
-from src.circadian import fit_circadian_model
-
-df_clean = clean_signals(raw_df)
-features = extract_features(df_clean)
-circadian_fit = fit_circadian_model(features)
-```
-
 ## Roadmap
 
 - [ ] Explore raw-signal-as-input models (RNN/CNN) instead of hand-crafted features
@@ -146,30 +126,4 @@ circadian_fit = fit_circadian_model(features)
 - [ ] Post-processing and deployment path for real-world / real-time use
 - [ ] Add unit tests for `src/`
 
-## Related reading
 
-This pipeline's design was informed by the following surveys on deep learning for physiological signals:
-
-- Deep Learning in Physiological Signal Data: A Survey
-- Deep Learning on 1-D Biosignals: a Taxonomy-based Survey
-- Deep learning for healthcare applications based on physiological signals: A review
-
-
-
-Dataset Overview
-The project uses a large multimodal physiological dataset collected from participants over multiple days. It combines continuous wearable‑sensor signals with self‑reported psychological data, enabling both temporal modelling and human‑state prediction.
-
-Physiological Signals
-Each participant contributes several streams of biosignals, typically sampled at high frequency:
-
-Heart Rate — beat‑to‑beat cardiac activity
-
-HRV (Heart Rate Variability) — autonomic nervous system indicator
-
-EDA (Electrodermal Activity) — stress/arousal‑related skin conductance
-
-Skin Temperature — thermoregulation and circadian cues
-
-Accelerometer — movement, activity level, sleep/wake patterns
-
-Signals are recorded continuously, producing hours of data per day per participant, with varying quality depending on sensor placement, movement, and device limitations.
