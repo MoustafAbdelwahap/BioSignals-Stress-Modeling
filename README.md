@@ -19,29 +19,29 @@
 
 ## What this is
 
-A research pipeline (originally built during a master's research internship) for turning large-scale, multi-day wearable physiological data into models of stress and personality — going from raw sensor streams all the way to personalized, subject-aware classifiers.
+A research pipeline (originally built during a master's research internship) for turning large-scale, multi-day wearable physiological data into models of stress and personality, going from raw sensor streams all the way to personalized, subject-aware classifiers.
 
-- **Data cleaning** — denoising and aligning multimodal biosignal streams, outlier detection with tunable methods and window lengths
-- **Feature extraction** — statistical, frequency-domain, and physiological features from HR, HRV, EDA, skin temperature, and accelerometer data
-- **Exploratory analysis** — participant demographics, questionnaire/diary response distributions, data quality and coverage per user
-- **Circadian modelling** — recovering 24h rhythm patterns from continuous signals, then testing whether those rhythms differ by psychological trait or stress level
-- **Clustering & statistical testing** — grouping participants by psychological profile and testing whether physiology and daily-diary responses differ across clusters
-- **Stress & personality prediction** — classifiers/regressors that progressively relax the problem definition (extreme-case binary → moderate binary → 3-class), evaluated under both cross-validation and leave-one-subject-out (LOSO)
-- **Model interpretability & fairness** — feature importance, error analysis, and AI ethics/fairness considerations given the sensitive nature of physiological + psychological data
+- **Data cleaning**: denoising and aligning multimodal biosignal streams, outlier detection with tunable methods and window lengths
+- **Feature extraction**: statistical, frequency-domain, and physiological features from HR, HRV, EDA, skin temperature, and accelerometer data
+- **Exploratory analysis**: participant demographics, questionnaire/diary response distributions, data quality and coverage per user
+- **Circadian modelling**: recovering 24h rhythm patterns from continuous signals, then testing whether those rhythms differ by psychological trait or stress level
+- **Clustering & statistical testing**: grouping participants by psychological profile and testing whether physiology and daily-diary responses differ across clusters
+- **Stress & personality prediction**: classifiers/regressors that progressively relax the problem definition (extreme-case binary to moderate binary to 3-class), evaluated under both cross-validation and leave-one-subject-out (LOSO)
+- **Model interpretability & fairness**: feature importance, error analysis, and AI ethics/fairness considerations given the sensitive nature of physiological + psychological data
 
 ## Why
 
-Wearables generate huge volumes of raw physiological data, but most of it is noise until it's cleaned, contextualized against circadian rhythms, and linked to psychological state. Most published pipelines stop at "one model for everyone." This project treats that as a starting point, not the goal — the roadmap below moves toward personalized, subject-aware modelling instead of one-size-fits-all classifiers.
+Wearables generate huge volumes of raw physiological data, but most of it is noise until it's cleaned, contextualized against circadian rhythms, and linked to psychological state. Most published pipelines stop at "one model for everyone." This project treats that as a starting point, not the goal: the roadmap below moves toward personalized, subject-aware modelling instead of one-size-fits-all classifiers.
 
 ## Dataset
 
 - **115 participants** enrolled; 13 dropped out or were excluded (technical problems or allergies)
 - Data acquisition ran **February 2022 – May 2022**, with each participant wearing the device across **3 weeks of sessions**
 - Collected with the **Empatica E4 wristband**, worn as continuously as possible throughout the study
-- **49,064 hours** of physiological recording in total (~50 GB) — one of the larger field datasets of its kind
+- **49,064 hours** of physiological recording in total (~50 GB), one of the larger field datasets of its kind
 - **6 signals across 4 modalities**: accelerometer, PPG, HR, IBI, EDA, and skin temperature
 - **Pre-study questionnaire**: demographic information (age, sex, etc.)
-- **Daily questionnaires**, completed **3 times a day** (Morning / Noon / Evening), covering overall health condition and self-assessed stress — this is the ground truth used for the stress labels
+- **Daily questionnaires**, completed **3 times a day** (Morning / Noon / Evening), covering overall health condition and self-assessed stress. This is the ground truth used for the stress labels
   - *Morning*: e.g. "Are you in good shape this morning?", "Are you satisfied with the quality of your sleep?", "Do you feel sick?"
   - *Evening*: e.g. "Have you felt any stress since this afternoon?", "Are you satisfied with your life today?", plus an optional free-text comment
 - **Target task**: stress level prediction, framed as both binary and multiclass classification
@@ -89,8 +89,8 @@ Raw sensor streams + questionnaires + daily diaries
 ## Methodology notes
 
 - **Problem definition is relaxed progressively**: stress classification starts with extreme cases only (e.g. diary scores `<30` vs `>70`), then tightens toward the middle (`<40` vs `>60`), then expands to 3 classes (low / neutral / high) as models improve.
-- **Two evaluation regimes are reported side by side**: standard cross-validation and leave-one-subject-out (LOSO). LOSO scores are expected to be lower — that gap is itself a diagnostic for how much a model is relying on subject-specific signal rather than generalizable patterns.
-- **Personality is treated in both directions**: clustering participants by psychological trait to see if physiology/diary responses differ across clusters, and — going further — testing whether personality itself can be predicted from physiology.
+- **Two evaluation regimes are reported side by side**: standard cross-validation and leave-one-subject-out (LOSO). LOSO scores are expected to be lower; that gap is itself a diagnostic for how much a model is relying on subject-specific signal rather than generalizable patterns.
+- **Personality is treated in both directions**: clustering participants by psychological trait to see if physiology/diary responses differ across clusters, and, going further, testing whether personality itself can be predicted from physiology.
 - **Fairness is treated as a first-class concern**, not an afterthought, given the sensitive nature of physiological + psychological data.
 
 ## Results
@@ -102,7 +102,7 @@ Raw sensor streams + questionnaires + daily diaries
 | WESAD (public dataset) | Lab Data | Hand-crafted features only (Temperature, HRV) | CNN | n/a | n/a | 0.84 |
 | WESAD (public dataset) | Lab Data | Raw signals & hand-crafted features | CNN | Under progress | Under progress | Under progress |
 
-> **Note:** There is still room for improvement — e.g. relaxing the classification thresholds — that wasn't fully explored due to time constraints during the internship.
+> **Note:** There is still room for improvement (e.g. relaxing the classification thresholds) that wasn't fully explored due to time constraints during the internship.
 
 ## Repository structure
 
