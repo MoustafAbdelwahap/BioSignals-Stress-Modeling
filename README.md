@@ -35,21 +35,24 @@ Wearables generate huge volumes of raw physiological data, but most of it is noi
 
 ## Dataset
 
-<!-- Fill in with your actual dataset name/source -->
-A multimodal physiological dataset collected from participants over multiple days, combining continuous wearable-sensor streams with:
-- **Pre-study questionnaires** — psychological trait / personality measures
-- **Daily diaries** — self-reported stress levels and state, answered repeatedly across the study period
-- **Continuous biosignals** — recorded throughout, at varying quality depending on sensor placement, movement, and device limitations
+- **115 participants** enrolled; 13 dropped out or were excluded (technical problems or allergies)
+- Data acquisition ran **February 2022 – May 2022**, with each participant wearing the device across **3 weeks of sessions**
+- Collected with the **Empatica E4 wristband**, worn as continuously as possible throughout the study
+- **49,064 hours** of physiological recording in total (~50 GB) — one of the larger field datasets of its kind
+- **6 signals across 4 modalities**: accelerometer, PPG, HR, IBI, EDA, and skin temperature
+- **Pre-study questionnaire**: demographic information (age, sex, etc.)
+- **Daily questionnaires**, completed **3 times a day** (Morning / Noon / Evening), covering overall health condition and self-assessed stress — this is the ground truth used for the stress labels
+  - *Morning*: e.g. "Are you in good shape this morning?", "Are you satisfied with the quality of your sleep?", "Do you feel sick?"
+  - *Evening*: e.g. "Have you felt any stress since this afternoon?", "Are you satisfied with your life today?", plus an optional free-text comment
+- **Target task**: stress level prediction, framed as both binary and multiclass classification
 
-| Signal | Description | Typical Use |
-|---|---|---|
-| Heart Rate | Beat-to-beat cardiac activity | Stress/arousal indicator |
-| HRV | Heart rate variability | Autonomic nervous system state |
-| EDA | Electrodermal activity | Skin conductance, arousal |
-| Skin Temperature | Thermoregulation | Circadian phase marker |
-| Accelerometer | Movement | Activity level, sleep/wake detection |
+### Participant demographics
 
-Exploratory analysis covers participant-level statistics (age, sex distribution), questionnaire/diary response distributions, and per-user data coverage (hours of signal per day, number of diary responses, data quality).
+<p align="center">
+  <img src="assets/figures/age_sex_distribution.png" width="60%" alt="Distribution of participants by age and sex">
+</p>
+
+Participants skew young (majority aged 18–21) and predominantly female, with a smaller number of male and non-binary participants across the same age range.
 
 > Note: raw data is not included in this repo. See [`data/README.md`](data/README.md) for access instructions.
 
@@ -92,15 +95,14 @@ Raw sensor streams + questionnaires + daily diaries
 
 ## Results
 
-<!-- Replace with your actual headline numbers/plots -->
-| Model | Task | Evaluation | Metric | Score |
-|---|---|---|---|---|
-| Baseline (Logistic Regression) | Stress, extreme binary (<30 vs >70) | Cross-validation | F1 | 0.XX |
-| Baseline (Logistic Regression) | Stress, extreme binary (<30 vs >70) | LOSO | F1 | 0.XX |
-| Random Forest | Stress, 3-class | Cross-validation | F1 (macro) | 0.XX |
-| Random Forest | Stress, 3-class | LOSO | F1 (macro) | 0.XX |
-| Clustering | Personality trait grouping | — | Silhouette | 0.XX |
+| Method | Data Used | Data Type | Features Used | Model | F1 (class 0) | F1 (class 1) | Accuracy |
+|---|---|---|---|---|---|---|---|
+| Old approach | UBFC | Field Data | Hand-crafted features only (EDA) | SVM | 0.72 | 0.65 | 0.69 |
+| **My approach** | UBFC | Field Data | Raw signals & hand-crafted features (PPG) | CNN | **0.92** | **0.87** | **0.90** |
+| Another paper | WESAD (public dataset) | Lab Data | Hand-crafted features only (Temperature, HRV) | CNN | n/a | n/a | 0.84 |
+| Another paper | WESAD (public dataset) | Lab Data | Raw signals & hand-crafted features | CNN | Under progress | Under progress | Under progress |
 
+> **Note:** There is still room for improvement — e.g. relaxing the classification thresholds — that wasn't fully explored due to time constraints during the internship.
 
 ## Repository structure
 
