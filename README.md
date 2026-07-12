@@ -49,7 +49,7 @@ Wearables generate huge volumes of raw physiological data, but most of it is noi
 ### Participant demographics
 
 <p align="center">
-  <img src="assets/figures/age_sex_distribution.png" width="60%" alt="Distribution of participants by age and sex">
+  <img src="assets/age_sex_distribution.png" width="60%" alt="Distribution of participants by age and sex">
 </p>
 
 Participants skew young (majority aged 18–21) and predominantly female, with a smaller number of male and non-binary participants across the same age range.
@@ -95,12 +95,12 @@ Raw sensor streams + questionnaires + daily diaries
 
 ## Results
 
-| Method | Data Used | Data Type | Features Used | Model | F1 (class 0) | F1 (class 1) | Accuracy |
-|---|---|---|---|---|---|---|---|
-| Old approach | UBFC | Field Data | Hand-crafted features only (EDA) | SVM | 0.72 | 0.65 | 0.69 |
-| **My approach** | UBFC | Field Data | Raw signals & hand-crafted features (PPG) | CNN | **0.92** | **0.87** | **0.90** |
-| Another paper | WESAD (public dataset) | Lab Data | Hand-crafted features only (Temperature, HRV) | CNN | n/a | n/a | 0.84 |
-| Another paper | WESAD (public dataset) | Lab Data | Raw signals & hand-crafted features | CNN | Under progress | Under progress | Under progress |
+| Data Used | Data Type | Features Used | Model | F1 (class 0) | F1 (class 1) | Accuracy |
+|---|---|---|---|---|---|---|
+| UBFC | Field Data | Hand-crafted features only (EDA) | SVM | 0.72 | 0.65 | 0.69 |
+| UBFC | Field Data | Raw signals & hand-crafted features (PPG) | CNN | **0.92** | **0.87** | **0.90** |
+| WESAD (public dataset) | Lab Data | Hand-crafted features only (Temperature, HRV) | CNN | n/a | n/a | 0.84 |
+| WESAD (public dataset) | Lab Data | Raw signals & hand-crafted features | CNN | Under progress | Under progress | Under progress |
 
 > **Note:** There is still room for improvement — e.g. relaxing the classification thresholds — that wasn't fully explored due to time constraints during the internship.
 
